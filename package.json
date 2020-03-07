@@ -1,0 +1,23 @@
+{
+  "name": "ghphoto-prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "JSCode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiffylubeyou/GHphoto-Prototype.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiffylubeyou/GHphoto-Prototype/issues"
+  },
+  "homepage": "https://github.com/jiffylubeyou/GHphoto-Prototype#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gphoto2": "^0.3.0"
+  }
+}
