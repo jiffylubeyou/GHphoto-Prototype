@@ -34,10 +34,13 @@ function listCameras() {
     //save to specific directories
 
     //take photos
-    takePhotos(list);
-})};
+    /*takePhotos(list);*/
+  })};
 
-function takePhotos(list) {
+function takePhotos() {
+  GPhoto.list(function (list) {
+    if (list.length === 0) return;
+    var camera = list[0];
   let index = 0;
   list.forEach(element => {
     element.takePicture({download: true}, function (er, data)
@@ -45,7 +48,7 @@ function takePhotos(list) {
   });
   console.log(index);
   index++;
-});};
+})})};
 
 function getconfig(camera) {
   camera.getConfig(function (er, settings) {
@@ -53,18 +56,23 @@ function getconfig(camera) {
   });
 }
 
-function autoFocusAll(list) {
+function autoFocusAll() {
+  GPhoto.list(function (list) {
+    if (list.length === 0) return;
+    var camera = list[0];
+  
   list.forEach(element => {
     element.setConfigValue('autofocusdrive', 1, function (er) {
       //..
-    })});
+    })})});
 }
 
-function setAllJpeg(list) {
+function setAllJpeg() {
+  GPhoto.list(function (list) {
+    if (list.length === 0) return;
+    var camera = list[0];
   list.forEach(element => {
     element.setConfigValue('imagequality', 1, function (er) {
       //..
-    })});
+    })})});
 }
-
-listCameras();
