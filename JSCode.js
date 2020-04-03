@@ -25,29 +25,46 @@ function listCameras() {
       getconfig(element);
     })*/
 
-    /*//autofocus cameras
-    list.forEach(element => {
-      element.setConfigValue('autofocusdrive', 1, function (er) {
-        //..
-      })});*/
+    //autofocus cameras
+    /*autoFocusAll(list);*/
+
+    //set all cameras to save as JPEGs
+    /*setAllJpeg(list);*/
+
+    //save to specific directories
 
     //take photos
-    let index = 0;
-    list.forEach(element => {
-      takePhoto(element, index);
-      console.log(index);
-      index++;
-    })
+    takePhotos(list);
 })};
-function takePhoto(camera, pictureNameIndex){
-    camera.takePicture({download: true}, function (er, data)
-    {fs.writeFileSync(__dirname + '/picture' + pictureNameIndex + '.jpg', data);
-})};
+
+function takePhotos(list) {
+  let index = 0;
+  list.forEach(element => {
+    element.takePicture({download: true}, function (er, data)
+    {fs.writeFileSync(__dirname + '/picture' + index + '.jpg', data);
+  });
+  console.log(index);
+  index++;
+});};
 
 function getconfig(camera) {
   camera.getConfig(function (er, settings) {
     console.log(settings);
   });
+}
+
+function autoFocusAll(list) {
+  list.forEach(element => {
+    element.setConfigValue('autofocusdrive', 1, function (er) {
+      //..
+    })});
+}
+
+function setAllJpeg(list) {
+  list.forEach(element => {
+    element.setConfigValue('imagequality', 1, function (er) {
+      //..
+    })});
 }
 
 listCameras();
